@@ -25,8 +25,10 @@ namespace Movies.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IHostingEnvironment _appEnv;
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
+            _appEnv = env;
             Configuration = configuration;
         }
         public IConfiguration Configuration { get; }
@@ -37,7 +39,7 @@ namespace Movies.API
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
             services.AddCors();
             services.AddDbContext<MoviesContext>(x => 
-            x.UseSqlite("Data Source=./Movies.db")
+            x.UseSqlite($"Data Source = {_appEnv.ContentRootPath}/Movies.db")
             .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.IncludeIgnoredWarning)));
             services.AddMvc().AddJsonOptions(opt =>
             {
@@ -63,9 +65,6 @@ namespace Movies.API
         {
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
             services.AddCors();
-            services.AddDbContext<MoviesContext>(x => 
-            x.UseSqlite(Configuration.GetConnectionString("Default"))
-            .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.IncludeIgnoredWarning)));
             services.AddMvc().AddJsonOptions(opt =>
             {
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
