@@ -61,7 +61,7 @@ namespace Movies.API.Controllers
             // var pagedMovies = await PagedList<Movie>.CreateAsync(movies, movieParams.PageNumber, movieParams.PageSize);
             // var moviesToReturn = _mapper.Map<IEnumerable<MovieForListDto>>(pagedMovies);
             // Response.AddPagination(pagedMovies.CurrentPage, pagedMovies.PageSize, pagedMovies.TotalCount, pagedMovies.TotalPages);
-            var moviesToReturn = new List<Movie>(){new Movie {Name = "test",Rating=7,Genre ="test",InCart = false,Id = 1, Price = 22}}
+            var moviesToReturn = new List<Movie>(){new Movie {Name = "test",Rating=7,Genre ="test",InCart = false,Id = 1, Price = 22}};
             return Ok(moviesToReturn);
         }
 
