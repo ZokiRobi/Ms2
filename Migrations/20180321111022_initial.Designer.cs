@@ -10,7 +10,7 @@ using System;
 namespace Movies.API.Migrations
 {
     [DbContext(typeof(MoviesContext))]
-    [Migration("20180321101823_initial")]
+    [Migration("20180321111022_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
