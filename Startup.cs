@@ -37,7 +37,7 @@ namespace Movies.API
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
             services.AddCors();
             services.AddDbContext<MoviesContext>(x => 
-            x.UseSqlite(Configuration.GetConnectionString("Default"))
+            x.UseSqlite("Data Source=./Movies.db")
             .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.IncludeIgnoredWarning)));
             services.AddMvc().AddJsonOptions(opt =>
             {
