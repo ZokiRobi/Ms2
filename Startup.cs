@@ -39,7 +39,7 @@ namespace Movies.API
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
             services.AddCors();
             services.AddDbContext<MoviesContext>(x => 
-            x.UseSqlite($"Data Source = {_appEnv.ContentRootPath}/Movies.db")
+            x.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MovieStore;Trusted_Connection=True;MultipleActiveResultSets=true")
             .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.IncludeIgnoredWarning)));
             services.AddMvc().AddJsonOptions(opt =>
             {
