@@ -11,15 +11,15 @@ using System;
 namespace Movies.API.Migrations
 {
     [DbContext(typeof(MoviesContext))]
-    [Migration("20180321112615_inital")]
-    partial class inital
+    [Migration("20180321115828_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
 
             modelBuilder.Entity("Movies.API.Models.FavoriteMovie", b =>
                 {
