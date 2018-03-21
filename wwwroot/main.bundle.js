@@ -2082,7 +2082,7 @@ var MovieService = /** @class */ (function () {
             .subscribe();
     };
     MovieService.prototype.getTrailer = function (movieName) {
-        return this.http.get("http://localhost:5000/api/search" + "?movieName=" + movieName + " trailer").map(function (res) { return res.json(); });
+        return this.http.get("/api/search" + "?movieName=" + movieName + " trailer").map(function (res) { return res.json(); });
     };
     MovieService.prototype.removeMovieFromCart = function (movie) {
         var index = __WEBPACK_IMPORTED_MODULE_10_underscore__["findIndex"](this.moviesForCart, { id: movie.id });
