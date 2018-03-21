@@ -43,7 +43,7 @@ namespace Movies.API.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
-        public async IActionResult GetMovies(MovieParams movieParams)
+        public  IActionResult GetMovies(MovieParams movieParams)
         {
             // var movies = _context.Movies.Include(x => x.Photos).OrderByDescending(x => x.YearOfRelease).AsQueryable();
             // if (!string.IsNullOrEmpty(movieParams.Genre))
