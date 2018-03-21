@@ -61,30 +61,30 @@ namespace Movies.API
                 };
             });
         }
-        public void ConfigureDevelopmentServices(IServiceCollection services)
-        {
-            var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
-            services.AddCors();
-            services.AddMvc().AddJsonOptions(opt =>
-            {
-                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-            }); ;
-            services.AddTransient<Seed>();
-            services.AddAutoMapper();
-            services.AddScoped<IAuthRepository, AuthRepository>();
-            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
-        }
+        // public void ConfigureDevelopmentServices(IServiceCollection services)
+        // {
+        //     var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
+        //     services.AddCors();
+        //     services.AddMvc().AddJsonOptions(opt =>
+        //     {
+        //         opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        //     }); ;
+        //     services.AddTransient<Seed>();
+        //     services.AddAutoMapper();
+        //     services.AddScoped<IAuthRepository, AuthRepository>();
+        //     services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+        //     services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        //     .AddJwtBearer(options =>
+        //     {
+        //         options.TokenValidationParameters = new TokenValidationParameters
+        //         {
+        //             ValidateIssuerSigningKey = true,
+        //             IssuerSigningKey = new SymmetricSecurityKey(key),
+        //             ValidateIssuer = false,
+        //             ValidateAudience = false
+        //         };
+        //     });
+        // }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
