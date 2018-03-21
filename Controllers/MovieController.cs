@@ -43,24 +43,25 @@ namespace Movies.API.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetMovies(MovieParams movieParams)
+        public async IActionResult GetMovies(MovieParams movieParams)
         {
-            var movies = _context.Movies.Include(x => x.Photos).OrderByDescending(x => x.YearOfRelease).AsQueryable();
-            if (!string.IsNullOrEmpty(movieParams.Genre))
-                movies = movies.Where(m => m.Genre == movieParams.Genre);
+            // var movies = _context.Movies.Include(x => x.Photos).OrderByDescending(x => x.YearOfRelease).AsQueryable();
+            // if (!string.IsNullOrEmpty(movieParams.Genre))
+            //     movies = movies.Where(m => m.Genre == movieParams.Genre);
 
-            if(!string.IsNullOrEmpty(movieParams.Name))
-                movies = movies.Where(m => m.Name.ToLower().StartsWith(movieParams.Name.ToLower()));
+            // if(!string.IsNullOrEmpty(movieParams.Name))
+            //     movies = movies.Where(m => m.Name.ToLower().StartsWith(movieParams.Name.ToLower()));
 
-            if(!string.IsNullOrEmpty(movieParams.OrderBy) && movieParams.OrderBy == "price")
-                movies = movies.OrderByDescending(x => x.Price);
+            // if(!string.IsNullOrEmpty(movieParams.OrderBy) && movieParams.OrderBy == "price")
+            //     movies = movies.OrderByDescending(x => x.Price);
 
-            if(!string.IsNullOrEmpty(movieParams.OrderBy) && movieParams.OrderBy == "year")
-                movies = movies.OrderByDescending(x => x.YearOfRelease);
+            // if(!string.IsNullOrEmpty(movieParams.OrderBy) && movieParams.OrderBy == "year")
+            //     movies = movies.OrderByDescending(x => x.YearOfRelease);
 
-            var pagedMovies = await PagedList<Movie>.CreateAsync(movies, movieParams.PageNumber, movieParams.PageSize);
-            var moviesToReturn = _mapper.Map<IEnumerable<MovieForListDto>>(pagedMovies);
-            Response.AddPagination(pagedMovies.CurrentPage, pagedMovies.PageSize, pagedMovies.TotalCount, pagedMovies.TotalPages);
+            // var pagedMovies = await PagedList<Movie>.CreateAsync(movies, movieParams.PageNumber, movieParams.PageSize);
+            // var moviesToReturn = _mapper.Map<IEnumerable<MovieForListDto>>(pagedMovies);
+            // Response.AddPagination(pagedMovies.CurrentPage, pagedMovies.PageSize, pagedMovies.TotalCount, pagedMovies.TotalPages);
+            var moviesToReturn = new List<Movie>(){new Movie {Name = "test",Rating=7,Genre ="test",InCart = false,Id = 1, Price = 22}}
             return Ok(moviesToReturn);
         }
 
